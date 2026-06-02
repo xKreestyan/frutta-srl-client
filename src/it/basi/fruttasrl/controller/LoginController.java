@@ -1,8 +1,8 @@
 package it.basi.fruttasrl.controller;
 
-import it.basi.fruttasrl.dao.LoginProcedureDAO;
+import it.basi.fruttasrl.dao.LoginDAO;
 import it.basi.fruttasrl.exception.DAOException;
-import it.basi.fruttasrl.model.UserCredentials;
+import it.basi.fruttasrl.model.domain.UserCredentials;
 import it.basi.fruttasrl.model.dto.LoginRequest;
 import it.basi.fruttasrl.view.LoginView;
 
@@ -23,7 +23,7 @@ public class LoginController implements Controller {
         //un DTO tipicamente ha un costruttore, dei getter, ma non dei setter in quanto oggetto immutabile usato solo per chiamare la stored procedure
 
         try {
-            cred = new LoginProcedureDAO().execute(loginRequest); //"chiamo" del codice SQL dal DAO passando il DTO
+            cred = new LoginDAO().execute(loginRequest); //"chiamo" del codice SQL dal DAO passando il DTO
         } catch(DAOException e) {
             throw new RuntimeException(e);
         }

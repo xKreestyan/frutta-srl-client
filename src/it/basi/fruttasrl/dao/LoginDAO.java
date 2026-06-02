@@ -1,7 +1,7 @@
 package it.basi.fruttasrl.dao;
 
 import it.basi.fruttasrl.exception.DAOException;
-import it.basi.fruttasrl.model.UserCredentials;
+import it.basi.fruttasrl.model.domain.UserCredentials;
 import it.basi.fruttasrl.model.domain.Role;
 import it.basi.fruttasrl.model.dto.LoginRequest;
 
@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class LoginProcedureDAO implements GenericProcedureDAO<LoginRequest, UserCredentials> {
+public class LoginDAO implements GenericProcedureDAO<LoginRequest, UserCredentials> {
     @Override
     public UserCredentials execute(LoginRequest input) throws DAOException {
         String username = input.username();

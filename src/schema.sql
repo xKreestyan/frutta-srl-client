@@ -460,6 +460,13 @@ CREATE USER 'operatore_vendite' IDENTIFIED BY 'operatore_vendite';
 GRANT EXECUTE ON PROCEDURE CreaOrdine              TO 'operatore_vendite';
 GRANT EXECUTE ON PROCEDURE InserisciProdottoOrdine TO 'operatore_vendite';
 
+-- Operatore vendite: **grant non specificati nella relazione**.
+-- SELECT e DELETE su Ordine necessari per annullare automaticamente
+-- un ordine vuoto nel caso in cui nessun prodotto venga inserito
+-- con successo (es. quantità insufficiente nel magazzino).
+GRANT SELECT ON frutta_srl.Ordine TO 'operatore_vendite';
+GRANT DELETE ON frutta_srl.Ordine TO 'operatore_vendite';
+
 -- Magazziniere: può eseguire ReportScadenze e RegistraProdottoMagazzino
 DROP USER IF EXISTS magazziniere;
 CREATE USER 'magazziniere' IDENTIFIED BY 'magazziniere';

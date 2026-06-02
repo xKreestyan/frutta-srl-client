@@ -1,7 +1,10 @@
 package it.basi.fruttasrl.controller;
 
+import it.basi.fruttasrl.dao.ConnectionFactory;
 import it.basi.fruttasrl.exception.AppException;
-import it.basi.fruttasrl.model.UserCredentials;
+import it.basi.fruttasrl.model.domain.UserCredentials;
+
+import java.sql.SQLException;
 
 public class AppController implements Controller {
     UserCredentials cred;
@@ -14,6 +17,12 @@ public class AppController implements Controller {
 
         if(cred.getRole() == null) {
             throw new RuntimeException("Invalid credentials");
+        }
+
+        try {
+            ConnectionFactory.changeRole(cred.getRole());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         switch(cred.getRole()) { //a seconda del ruolo cambio modalità operativa dell'applicazione

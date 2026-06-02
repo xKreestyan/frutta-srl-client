@@ -1,6 +1,4 @@
-package it.basi.fruttasrl.model;
-
-import it.basi.fruttasrl.model.domain.Role;
+package it.basi.fruttasrl.model.domain;
 
 public class UserCredentials {
     private final String username;
